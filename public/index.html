@@ -30,6 +30,8 @@
     }
 
     li {
+      display: flex;
+      justify-content: space-between;
       margin: 10px 0;
     }
   </style>
@@ -58,6 +60,11 @@ async function addTask() {
   loadTasks();
 }
 
+async function deleteTask(index) {
+  await fetch(`/tasks/${index}`, { method: "DELETE" });
+  loadTasks();
+}
+
 async function loadTasks() {
   const res = await fetch("/tasks");
   const data = await res.json();
@@ -65,9 +72,9 @@ async function loadTasks() {
   const list = document.getElementById("taskList");
   list.innerHTML = "";
 
-  data.forEach(t => {
+  data.forEach((t, i) => {
     const li = document.createElement("li");
-    li.innerText = t;
+    li.innerHTML = `${t} <button onclick="deleteTask(${i})">❌</button>`;
     list.appendChild(li);
   });
 }

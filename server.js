@@ -6,14 +6,25 @@ app.use(express.static("public"));
 
 let tasks = [];
 
+// Get all tasks
 app.get("/tasks", (req, res) => {
   res.json(tasks);
 });
 
+// Add task
 app.post("/tasks", (req, res) => {
   const task = req.body.task;
   tasks.push(task);
   res.send("Task added");
 });
 
-app.listen(3000, () => console.log("Server running on port 3000"));
+// Delete task
+app.delete("/tasks/:index", (req, res) => {
+  const index = req.params.index;
+  tasks.splice(index, 1);
+  res.send("Task deleted");
+});
+
+app.listen(3000, () => {
+  console.log("Server running on port 3000");
+});
