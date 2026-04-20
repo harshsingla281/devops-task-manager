@@ -1,0 +1,24 @@
+{
+  "name": "devops-task-manager",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/harshsingla281/devops-task-manager.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/harshsingla281/devops-task-manager/issues"
+  },
+  "homepage": "https://github.com/harshsingla281/devops-task-manager#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
