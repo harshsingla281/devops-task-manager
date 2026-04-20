@@ -24,7 +24,8 @@ app.delete("/tasks/:index", (req, res) => {
   tasks.splice(index, 1);
   res.send("Task deleted");
 });
+const PORT = process.env.PORT || 3000;
 
-app.listen(3000, () => {
-  console.log("Server running on port 3000");
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
