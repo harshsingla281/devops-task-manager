@@ -4,45 +4,91 @@
   <title>Task Manager</title>
   <style>
     body {
-      font-family: Arial;
-      background: #f5f5f5;
-      text-align: center;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
     }
 
     .container {
-      margin: 50px auto;
-      width: 300px;
+      width: 350px;
       background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .input-group {
+      display: flex;
+      gap: 10px;
     }
 
     input {
+      flex: 1;
       padding: 10px;
-      width: 70%;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      outline: none;
     }
 
     button {
-      padding: 10px;
-      margin-top: 10px;
+      background: #667eea;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
       cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #5a67d8;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 20px;
     }
 
     li {
       display: flex;
       justify-content: space-between;
-      margin: 10px 0;
+      align-items: center;
+      background: #f7f7f7;
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .delete-btn {
+      background: #e53e3e;
+      padding: 5px 10px;
+    }
+
+    .delete-btn:hover {
+      background: #c53030;
     }
   </style>
 </head>
 <body>
 
 <div class="container">
-  <h2>Task Manager</h2>
+  <h2>🚀 Task Manager</h2>
 
-  <input id="taskInput" placeholder="Enter task">
-  <button onclick="addTask()">Add</button>
+  <div class="input-group">
+    <input id="taskInput" placeholder="Enter task">
+    <button onclick="addTask()">Add</button>
+  </div>
 
   <ul id="taskList"></ul>
 </div>
@@ -57,6 +103,7 @@ async function addTask() {
     body: JSON.stringify({ task })
   });
 
+  document.getElementById("taskInput").value = "";
   loadTasks();
 }
 
@@ -74,7 +121,10 @@ async function loadTasks() {
 
   data.forEach((t, i) => {
     const li = document.createElement("li");
-    li.innerHTML = `${t} <button onclick="deleteTask(${i})">❌</button>`;
+    li.innerHTML = `
+      ${t}
+      <button class="delete-btn" onclick="deleteTask(${i})">Delete</button>
+    `;
     list.appendChild(li);
   });
 }
@@ -84,3 +134,4 @@ loadTasks();
 
 </body>
 </html>
+   
